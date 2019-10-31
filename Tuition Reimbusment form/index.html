@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Document</title>
+    <title>TRMS - Submit reinbursment form</title>
     <link rel="stylesheet" type="text/css" href="styles.css">.
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <body>
+
+        <div style="background-color:lightgrey" class="headertitle">
+                <h1 text-aligh:center>Tuition Reimbursement Management Form</h1>
+            </div>
+
     <!--Tuition reimbursement form-->
+    <div class="ReinbusmentFormBody">
     <form action="Submit">
         Employee First name:<br><input type="text" name="Employee first name" class="tuitionReinbusmentform"><br>
         Employee Last name:<br><input type="text" name="Emloyee last name" class="tuitionReinbusmentform"><br>
@@ -21,8 +27,12 @@
         Grading format:<br><input type="text" name="Grading format" class="tuitionReinbusmentform"><br>
         Type of event:<br><input type="text" name="Type of event" class="tuitionReinbusmentform"><br>
         Work-related justification:<br><input type="text" name="Work related justification" class="tuitionReinbusmentform"><br>
+        How much time will you miss from work?<br><input type="text" Time off work="Grading format" class="tuitionReinbusmentform"><br>
+        <br><input type='file' name='upload' class="FileChooser"><br><br>
         <br><input type="submit" name="Submit" class="tuitionReinbusmentformSubmitBTN">
     </form>
+    <br><br>
+</div>
 </body>
 </html>
 
