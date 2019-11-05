@@ -29,14 +29,4 @@ public class UserDAOImplementation implements UserDAO {
 	public String UserAuthenticationValidation(String username, String password) throws SQLException {
 		return null;//TODO Create logic
 	}
-	public static void main(String[] args) {
-		UserDAOImplementation userDAOImpl = new UserDAOImplementation();
-		try {
-			System.out.println(userDAOImpl.getAllUsers().toString());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
 }

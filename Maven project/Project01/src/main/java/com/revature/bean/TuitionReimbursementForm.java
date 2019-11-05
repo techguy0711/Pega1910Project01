@@ -7,8 +7,8 @@ public class TuitionReimbursementForm {
 	private String firstName;
 	private String lastName;
 	private String username;
-	private Date date;
-	private Timer time;
+	private String date;
+	private String time;
 	private String city;
 	private String state;
 	private String zip;
@@ -18,8 +18,7 @@ public class TuitionReimbursementForm {
 	private String typeOfEvent;
 	private String workRelatedJustification;
 	private int DaysMissedFromWork;
-	
-	public TuitionReinbusmentForm(String firstName, String lastName, String username, Date date, Timer time,
+	public TuitionReimbursementForm(String firstName, String lastName, String username, String date, String time,
 			String city, String state, String zip, String description, Double cost, String gradingFormat,
 			String typeOfEvent, String workRelatedJustification, int daysMissedFromWork) {
 		super();
@@ -56,16 +55,16 @@ public class TuitionReimbursementForm {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-	public Timer getTime() {
+	public String getTime() {
 		return time;
 	}
-	public void setTime(Timer time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 	public String getCity() {
