@@ -26,34 +26,61 @@ public class TuitionReimbursementFormDAOImplementation implements TuitionReimbur
 			ResultSet rs = stmt.executeQuery("select * from \"tuitionreimbursementforms\"");
 			TuitionReimbursementForm f = null;
 			while(rs.next()) {
-				f = new TuitionReimbursementForm(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(15), rs.getDouble(14), rs.getString(10), rs.getString(11), rs.getString(12), rs.getInt(13));
+				f = new TuitionReimbursementForm(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10), rs.getString(11), rs.getDouble(12), rs.getDouble(13), rs.getString(14), rs.getString(15), rs.getString(16),rs.getInt(17), rs.getString(18), rs.getBoolean(19),rs.getBoolean(20),rs.getBoolean(21),rs.getBoolean(22), rs.getBoolean(23));
 				formsList.add(f);
 			}
 			return formsList;
 	}
+	
+	@Override
+	public List<TuitionReimbursementForm> getFormsByUsername(String username) throws SQLException {
+		ConnFactory cf = ConnFactory.getInstance();
+			List<TuitionReimbursementForm> formsList = new ArrayList<TuitionReimbursementForm>();
+			Connection connection = cf.getConnection();
+			String sql = "select * from \\\"tuitionreimbursementforms\\\" where \\\"employee_username\\\" = ?";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			TuitionReimbursementForm f = null;
+			while(rs.next()) {
+				f = new TuitionReimbursementForm(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10), rs.getString(11), rs.getDouble(12), rs.getDouble(13), rs.getString(14), rs.getString(15), rs.getString(16),rs.getInt(17), rs.getString(18), rs.getBoolean(19),rs.getBoolean(20),rs.getBoolean(21),rs.getBoolean(22), rs.getBoolean(23));
+				formsList.add(f);
+			}
+			return formsList;
+	}
+	
 
 	@Override
-	public void submitForm(String firstName, String lastName, String username, String date, String time, String city,
-			String state, String zip, String description, Double cost, String gradingFormat, String typeOfEvent,
-			String workRelatedJustification, int daysMissedFromWork) throws SQLException{
+	public void submitForm(int form_id, String username, String firstName, String lastName, String date, String startDate, String time, String city,
+			String state, int zip, String description, Double cost, Double reimbursmentAmount, String gradingFormat, String typeOfEvent,
+			String workRelatedJustification, int daysMissedFromWork, String requested_information, boolean ds, boolean dh, boolean dc, boolean optional, boolean finals) throws SQLException{
 		ConnFactory cf = ConnFactory.getInstance();
 		Connection conn= cf.getConnection();
-		String sql= "insert into tuitionreimbursementforms values(nextval (\'reimbusseq\'),?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql= "insert into tuitionreimbursementforms values(nextval (\'reimbusseq\'),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement ps= conn.prepareStatement(sql);
-		ps.setString(1, firstName);
-		ps.setString(2, lastName);
-		ps.setString(3, username);
-		ps.setString(4, date);
-		ps.setString(5, time);
-		ps.setString(6, city);
-		ps.setString(7, state);
-		ps.setString(8, zip);
-		ps.setString(9, gradingFormat);
-		ps.setString(10, typeOfEvent);
-		ps.setString(11, workRelatedJustification);
-		ps.setInt(12, daysMissedFromWork);
-		ps.setDouble(13, cost);
-		ps.setString(14, description);
+		ps.setInt(1, form_id);
+		ps.setString(2, username);
+		ps.setString(3, firstName);
+		ps.setString(4, lastName);		
+		ps.setString(5, date);
+		ps.setString(6, startDate);
+		ps.setString(7, time);
+		ps.setString(8, city);
+		ps.setString(9, state);
+		ps.setInt(10, zip);
+		ps.setString(11, description);
+		ps.setDouble(12, cost);
+		ps.setDouble(13, reimbursmentAmount);
+		ps.setString(14, gradingFormat);
+		ps.setString(15, typeOfEvent);
+		ps.setString(16, workRelatedJustification);
+		ps.setInt(17, daysMissedFromWork);		
+		ps.setString(18, requested_information);
+		ps.setBoolean(19, ds);
+		ps.setBoolean(20, dh);
+		ps.setBoolean(21, dc);
+		ps.setBoolean(22, optional);
+		ps.setBoolean(23, finals);
 		ps.executeUpdate();
 	}
 }

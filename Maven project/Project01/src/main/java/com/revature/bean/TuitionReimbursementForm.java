@@ -13,7 +13,7 @@ public class TuitionReimbursementForm {
 	private String submit_time;
 	private String city;
 	private String state;
-	private String zip;
+	private int zip;
 	private String description;
 	private Double class_cost;
 	private Double reimbursment_amount;
@@ -34,7 +34,7 @@ public class TuitionReimbursementForm {
 	}
 
 	public TuitionReimbursementForm(int form_id, String employee_username, String employee_first, String employee_last,
-			String submit_date, String start_date, String submit_time, String city, String state, String zip,
+			String submit_date, String start_date, String submit_time, String city, String state, int zip,
 			String description, Double class_cost, Double reimbursment_amount, String passing_grade, String event_type,
 			String work_related_justification, int work_time_missed, String requested_information, boolean ds_approval,
 			boolean dh_approval, boolean bc_approval, boolean optional_info, boolean final_approval) {
