@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: romoa
-=======
-Built-By: tuann
->>>>>>> 88e378fd7a186afe88c27abf8bed01a3666a72c9
 Build-Jdk: 1.8.0_221
 Created-By: Maven Integration for Eclipse
 

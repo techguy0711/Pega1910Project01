@@ -6,6 +6,7 @@ public class Users {
 	private String user_password;
 	private int user_type;
 	private double available_reimbursment;
+	
 	public Users() {
 		super();
 		// TODO Auto-generated constructor stub
