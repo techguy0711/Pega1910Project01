@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TRMS - Submit reinbursment form</title>
+    <link rel="stylesheet" type="text/css" href="TRStyles.css">.
+</head>
+<body>
+        <div style="background-color:lightgrey" class="headertitle">
+                <h1 text-aligh:center>Tuition Reimbursement Management Form</h1>
+            </div>
+
+    <!--Tuition reimbursement form-->
+    <div class="ReinbusmentFormBody">
+    <form action="TuitionReimbursementFormServlet" method="get" id="form">
+        Employee First name:<br><input type="text" name="EmployeeFirstFame" class="tuitionReinbusmentform"><br>
+        Employee Last name:<br><input type="text" name="EmloyeeLastName" class="tuitionReinbusmentform"><br>
+        Employee username:<br><input type="text" name="EmployeeUsername" class="tuitionReinbusmentform"><br>
+        Date:<br><input type="date" name="Date" class="tuitionReinbusmentform"><br>
+        Time:<br><input type="time" name="Time" class="tuitionReinbusmentform"><br>
+        City:<br><input type="text" name="City" class="tuitionReinbusmentform"><br>
+        State:<br><input type="text" name="State" class="tuitionReinbusmentform"><br>
+        Zip:<br><input type="number" class="tuitionReinbusmentform" name="Zip" class="tuitionReinbusmentform"><br>
+        Description:<br><textarea name="Description" id="description" cols="27" rows="5"></textarea class="tuitionReinbusmentform"><br>
+        Cost:<br><input type="number" name = "Cost" class="currency" min="0.01" max="1000.00" class="tuitionReinbusmentform"/><br>
+        Grading format:<br><input type="text" name="GradingFormat" class="tuitionReinbusmentform"><br>
+        Type of event:<br><input type="text" name="TypeOfEvent" class="tuitionReinbusmentform"><br>
+        Work-related justification:<br><input type="text" name="WorkRelatedJustification" class="tuitionReinbusmentform"><br>
+        How much time will you miss from work?<br><input type="text" name = "TimeOffWork" class="tuitionReinbusmentform"><br>
+        <br><input type='file' name='upload' class="FileChooser"><br><br>
+        <br><input type="submit" name="Submit" class="tuitionReinbusmentformSubmitBTN">
+    </form>
+    <br><br>
+</div>
+    <script type="text/javascript" src="Userreim.js" ></script>
+</body>
+</html>
+

@@ -8,3 +8,32 @@ const form = document.querySelector('form')
      return false;
    }
  })
+ 
+ function load(){
+	var xhr = XMLHttpRequest(); //create
+	xhr.onreadystatechange=function(){ //define
+		console.log("in load()");
+	}
+	//POST calls the dopost in servlet
+	xhr.open("POST","http://localhost:9090/Broknservlets/LoginServlet");
+	var payload = jbuild(); 
+	xhr.send(payload);  
+}
+ 
+ // will grab what is in form and turn into JSON 
+ function jbuild(){
+	var obj ={};
+	var elements=document.getElementsById("f").elements;
+	for(var i = 0; i < elements.length-1; i++){
+		var item = elements.item(i);
+		obj[item.name]=item.value;
+		console.log(obj);
+	}
+	var json = JSON.stringify(obj);
+	console.log(json);
+	return json;
+}
+ 
+ window.onload=function(){
+	document.getElementById("submitid").addEventListener("click",load,false);
+}

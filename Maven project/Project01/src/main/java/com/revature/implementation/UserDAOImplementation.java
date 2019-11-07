@@ -13,20 +13,44 @@ import com.revature.dao.UserDAO;
 
 public class UserDAOImplementation implements UserDAO {
 	ConnFactory cf = ConnFactory.getInstance();
-	public List<Users> getAllUsers() throws SQLException {
-		List<Users> userList = new ArrayList<Users>();
-		Connection connection = cf.getConnection();
-		Statement stmt = connection.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from \"users\"");
-		Users u = null;
-		while(rs.next()) {
-			u = new Users(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(3));
-			userList.add(u);
-		}
-		return userList;
-	}
+//	public List<Users> getAllUsers() throws SQLException {
+//		List<Users> userList = new ArrayList<Users>();
+//		Connection connection = cf.getConnection();
+//		Statement stmt = connection.createStatement();
+//		ResultSet rs = stmt.executeQuery("select * from \"users\"");
+//		Users u = null;
+//		while(rs.next()) {
+//			u = new Users(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(3));
+//			userList.add(u);
+//		}
+//		return userList;
+//	}
 
-	public String UserAuthenticationValidation(String username, String password) throws SQLException {
-		return null;//TODO Create logic
+	// Pass in user name and password and check it in the database
+	// correspond the username and password with the number(0-3) level of restriction
+	// grab that value and return it back
+	public Users UserAuthenticationValidation(String username, String password) throws SQLException {
+		System.out.println("in user authentification");
+		Users r = null; 
+		Connection c = cf.getConnection();
+		Statement stmt = (Statement) c.createStatement();
+		ResultSet rs = stmt.executeQuery("select * from user_table;");
+		while (rs.next()) {
+			String u = rs.getString(2);
+			String pw = rs.getString(3);
+			if (u.equals(username) && pw.equals(password)  ) {
+				// grab the restriction from this account and return it
+				r = new Users(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDouble(5));
+				System.out.println(r);
+				return r;				
+			}
+		}
+		return r;
 	}
+@Override
+public List<Users> getAllUsers() throws SQLException {
+	// TODO Auto-generated method stub
+	return null;
 }
+}
+

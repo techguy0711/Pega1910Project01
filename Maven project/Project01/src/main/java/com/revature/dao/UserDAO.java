@@ -8,6 +8,6 @@ import com.revature.bean.Users;
 public interface UserDAO {
 	public List<Users>getAllUsers() throws SQLException;
 	//Returns acount type if user is valid
-	public String UserAuthenticationValidation(String username, String password) throws SQLException;
+	public Users UserAuthenticationValidation(String username, String password) throws SQLException;
 
 }

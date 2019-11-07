@@ -30,17 +30,18 @@ public class UserDAOImplementation implements UserDAO {
 	// correspond the username and password with the number(0-3) level of restriction
 	// grab that value and return it back
 	public int UserAuthenticationValidation(String username, String password) throws SQLException {
-		int r = 404;
+		Users r = null; 
 		Connection c = cf.getConnection();
 		Statement stmt = (Statement) c.createStatement();
-		ResultSet rs = stmt.executeQuery("select user_username, user_password, user_type from user_table;");
+		ResultSet rs = stmt.executeQuery("select * from user_table;");
 		while (rs.next()) {
-			String u = rs.getString(1);
-			String pw = rs.getString(2);
-			if (u.equals(username) && pw.equals(password)) {
+			String u = rs.getString(2);
+			String pw = rs.getString(3);
+			if (u.equals(username) && pw.equals(password)  ) {
 				// grab the restriction from this account and return it
-				r = rs.getInt(3);
-				return r;
+				r = new Users(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDouble(5);
+				System.out.println(r);
+				return r;				
 			}
 		}
 		return r;
