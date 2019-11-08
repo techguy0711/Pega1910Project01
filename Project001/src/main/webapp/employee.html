@@ -3,9 +3,55 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Employee</title>
+    <link rel="stylesheet" href="Employee.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	
+	 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	
+	
 </head>
 <body>
 <p>Employee</p>
+
+<p>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Button with data-target
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+   <div style="background-color:lightgrey" class="headertitle">
+                <h1 text-aligh:center>Tuition Reimbursement Management Form</h1>
+            </div>
+
+    <!--Tuition reimbursement form-->
+    <div class="ReinbusmentFormBody">
+    <form action="FormServlet" method="POST" id="ff" enctype="application/json">
+        Employee First name:<br><input type="text" name="employee_first" class="tuitionReinbusmentform"><br>
+        Employee Last name:<br><input type="text" name="employee_last" class="tuitionReinbusmentform"><br>
+        Todays Date:<br><input type="date" name="submit_date" class="tuitionReinbusmentform"><br>
+        Start Date:<br><input type="date" name="start_date" class="tuitionReinbusmentform"><br>        
+        Time:<br><input type="time" name="submit_time" class="tuitionReinbusmentform"><br>
+        City:<br><input type="text" name="city" class="tuitionReinbusmentform"><br>
+        State:<br><input type="text" name="state" class="tuitionReinbusmentform"><br>
+        Zip:<br><input type="number" class="tuitionReinbusmentform" name="zip" class="tuitionReinbusmentform"><br>
+        Description:<br><textarea name="description" id="description" cols="27" rows="5"></textarea class="tuitionReinbusmentform"><br>
+        Class Cost:<br><input type="number" name = "class_cost" class="currency" min="0.01" max="1000.00" class="tuitionReinbusmentform"/><br>
+        Reimbursment amount:<br><input type="number" name = "reimbursment_amount" class="currency" min="0.01" max="1000.00" class="tuitionReinbusmentform"/><br>
+        Grading format:<br><input type="text" name="passing_grade" class="tuitionReinbusmentform"><br>
+        Type of event:<br><input type="text" name="event_type" class="tuitionReinbusmentform"><br>
+        Work-related justification:<br><textarea type="text" name="work_related_justification" cols="27" rows="5"></textarea class="tuitionReinbusmentform"><br>
+        How much time will you miss from work?<br><input type="text" name = "work_time_missed" class="tuitionReinbusmentform"><br>
+        <br><input type='file' name='upload' class="FileChooser"><br><br>
+        <br><input type="submit" name="Submit" class="tuitionReinbusmentformSubmitBTN" id="formsubmit">
+    </form>
+    <br><br>
+</div>
+    <script type="text/javascript" src="Userreim.js" ></script>
+  </div>
+</div>
 
 </body>
 </html>

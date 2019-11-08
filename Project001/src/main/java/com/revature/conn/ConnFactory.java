@@ -26,12 +26,12 @@ public class ConnFactory {
 		Connection conn = null;
 		try {
 			Properties properties = new Properties();
-			try {
-				properties.load(new FileReader("database.properties"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			try {
+//				properties.load(new FileReader("database.properties"));
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			conn = DriverManager.getConnection("jdbc:postgresql://project01.cf7qnxamadjf.us-east-2.rds.amazonaws.com/postgres","Pega1019ProjectOne", "C0delikeab055");
 		} catch (SQLException e) {
 			System.out.println("Failed to create connection");
