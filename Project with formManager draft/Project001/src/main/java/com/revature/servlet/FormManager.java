@@ -22,6 +22,8 @@ import com.revature.bean.Users;
  */
 public class FormManager extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	UserImpl impl = new UserImpl();
+	TuitionReimbursementFormDAOImplementation formImpl = new TuitionReimbursementFormDAOImplementation();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -76,6 +78,7 @@ public class FormManager extends HttpServlet {
 		try {
 			list = impl.getAllForms();
 			for(int i =0; i < list.size(); i++){
+				if(list.get(i).isFinal_approval() == false) {
 				writer.append("<tr>");
 				writer.append("<th scope=\"row\">"+i+"</th>");
 				writer.append("	<td>"+list.get(i).getEmployee_username()+"</td>" + 
@@ -95,6 +98,7 @@ public class FormManager extends HttpServlet {
 						"		<td>"+list.get(i).getSubmit_time()+"</td>\r\n" + 
 						"		<td>"+list.get(i).getRequested_information()+"</td>\r\n");
 				writer.append("</tr>");
+				}
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -120,8 +124,8 @@ public class FormManager extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserImpl impl = new UserImpl();
-		TuitionReimbursementFormDAOImplementation formImpl = new TuitionReimbursementFormDAOImplementation();
+		//UserImpl impl = new UserImpl();
+		//TuitionReimbursementFormDAOImplementation formImpl = new TuitionReimbursementFormDAOImplementation();
 		try {
 			java.util.List<Users> list = impl.getAllUsers();
 			if (request.getParameter("Accept") != null){
@@ -148,6 +152,8 @@ public class FormManager extends HttpServlet {
 						}
 						if(users.getUser_type() == 3) {
 							formImpl.BC_Aproval(selectedRow, true);
+							formImpl.DH_Aproval(selectedRow, true);
+							formImpl.DS_Aproval(selectedRow, true);
 							RequestDispatcher rs = request.getRequestDispatcher("FormManager");
 							rs.forward(request, response);
 						}												
@@ -176,6 +182,8 @@ public class FormManager extends HttpServlet {
 							}
 							if(users.getUser_type() == 3) {
 								formImpl.BC_Aproval(selectedRow, false);
+								formImpl.DH_Aproval(selectedRow, false);
+								formImpl.DS_Aproval(selectedRow, false);
 								RequestDispatcher rs = request.getRequestDispatcher("FormManager");
 								rs.forward(request, response);
 							}												

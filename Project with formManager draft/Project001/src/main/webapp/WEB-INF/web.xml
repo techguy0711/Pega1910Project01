@@ -38,4 +38,14 @@
     <servlet-name>FormManager</servlet-name>
     <url-pattern>/FormManager</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BC_FormManager</display-name>
+    <servlet-name>BC_FormManager</servlet-name>
+    <servlet-class>com.revature.servlet.BC_FormManager</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BC_FormManager</servlet-name>
+    <url-pattern>/BC_FormManager</url-pattern>
+  </servlet-mapping>
 </web-app>
