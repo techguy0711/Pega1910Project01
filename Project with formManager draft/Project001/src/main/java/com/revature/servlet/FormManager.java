@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.http.HttpRequest;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -104,8 +105,15 @@ public class FormManager extends HttpServlet {
 				+ "<input type=\"text\" name = \"row\" value=\"row\">"+
 				"<input type=\"submit\" name = \"Accept\" value=\"Accept\">" + 
 				"<input type=\"submit\" name = \"Decline\" value=\"Decline\">"+
-				"</form>");
+				"</form>"
+				+ "<script>"
+				+ "document.getElementById(\"Accept\").addEventListener(\"click\", function() {"
+				+ "location.reload();"
+				+ "}, true);\r\n"
+				+ "</script>");
+				
 		writer.append("</body>");
+		writer.append("</html>");
 	}
 
 	/**
@@ -130,15 +138,18 @@ public class FormManager extends HttpServlet {
 						}						
 						if(users.getUser_type() == 1) {
 							formImpl.DS_Aproval(selectedRow, true);
-							break;
+							RequestDispatcher rs = request.getRequestDispatcher("FormManager");
+							rs.forward(request, response);
 						}
 						if(users.getUser_type() == 2) {
 							formImpl.DH_Aproval(selectedRow, true);
-							break;
+							RequestDispatcher rs = request.getRequestDispatcher("FormManager");
+							rs.forward(request, response);
 						}
 						if(users.getUser_type() == 3) {
 							formImpl.BC_Aproval(selectedRow, true);
-							break;
+							RequestDispatcher rs = request.getRequestDispatcher("FormManager");
+							rs.forward(request, response);
 						}												
 					}
 				}
@@ -155,15 +166,18 @@ public class FormManager extends HttpServlet {
 							}						
 							if(users.getUser_type() == 1) {
 								formImpl.DS_Aproval(selectedRow, false);
-								break;
+								RequestDispatcher rs = request.getRequestDispatcher("FormManager");
+								rs.forward(request, response);
 							}
 							if(users.getUser_type() == 2) {
 								formImpl.DH_Aproval(selectedRow, false);
-								break;
+								RequestDispatcher rs = request.getRequestDispatcher("FormManager");
+								rs.forward(request, response);
 							}
 							if(users.getUser_type() == 3) {
 								formImpl.BC_Aproval(selectedRow, false);
-								break;
+								RequestDispatcher rs = request.getRequestDispatcher("FormManager");
+								rs.forward(request, response);
 							}												
 						}
 					}
@@ -172,8 +186,7 @@ public class FormManager extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		doGet(request, response);//kReloads Page with user session
+		doGet(request, response);	
 		System.out.println("In doGet");
 	}
 }
