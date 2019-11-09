@@ -4,6 +4,7 @@ import java.awt.List;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.http.HttpRequest;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -12,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.revature.daoimpl.TuitionReimbursementFormDAOImplementation;
+import com.revature.daoimpl.UserImpl;
 import com.revature.bean.TuitionReimbursementForm;
+import com.revature.bean.Users;
 /**
  * Servlet implementation class FormManager
  */
@@ -30,8 +33,10 @@ public class FormManager extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    String LogedInUser;//Cache the username for the logged in user.
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("In doGet");
+	    LogedInUser =  request.getParameter("username");
 		PrintWriter writer = response.getWriter();
 		writer.append("<html>\r\n" + 
 				"<head>\r\n" + 
@@ -88,15 +93,18 @@ public class FormManager extends HttpServlet {
 						"		<td>"+list.get(i).getSubmit_date()+"</td>" + 
 						"		<td>"+list.get(i).getSubmit_time()+"</td>\r\n" + 
 						"		<td>"+list.get(i).getRequested_information()+"</td>\r\n");
-				writer.append("<form id=\"f\" action=\"FormManager\" method = \"POST\">");
-				
-				writer.append("</form>")
 				writer.append("</tr>");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		writer.append("</table>");
+		writer.append("<form action = \"FormManager\" method = \"POST\">"
+				+ "<input type=\"text\" name = \"row\" value=\"row\">"+
+				"<input type=\"submit\" name = \"Accept\" value=\"Accept\">" + 
+				"<input type=\"submit\" name = \"Decline\" value=\"Decline\">"+
+				"</form>");
 		writer.append("</body>");
 	}
 
@@ -104,13 +112,68 @@ public class FormManager extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		UserImpl impl = new UserImpl();
+		TuitionReimbursementFormDAOImplementation formImpl = new TuitionReimbursementFormDAOImplementation();
+		try {
+			java.util.List<Users> list = impl.getAllUsers();
+			if (request.getParameter("Accept") != null){
+			       System.out.println("Accept");
+			       for (Users users : list) {
+			    	   //Bind selection to variable
+			    	   String SelectedUser = null;
+						String selectedRow = request.getParameter("row");
+						System.out.println(selectedRow);
+					if(users.getUser_username().equals(LogedInUser)) {
+						System.out.println("IN method");
+						if(users.getUser_type() == 0) {
+							//Employees can only view not accept or decline
+						}						
+						if(users.getUser_type() == 1) {
+							formImpl.DS_Aproval(selectedRow, true);
+							break;
+						}
+						if(users.getUser_type() == 2) {
+							formImpl.DH_Aproval(selectedRow, true);
+							break;
+						}
+						if(users.getUser_type() == 3) {
+							formImpl.BC_Aproval(selectedRow, true);
+							break;
+						}												
+					}
+				}
+			       
+			 }
+			else if (request.getParameter("Decline") != null){
+			       System.out.println("Decline");
+					for (Users users : list) {
+						String selectedRow = request.getParameter("row");
+						if(users.getUser_username().equals(LogedInUser)) {
+							System.out.println("Test");
+							if(users.getUser_type() == 0) {
+								//Employees can only view not accept or decline
+							}						
+							if(users.getUser_type() == 1) {
+								formImpl.DS_Aproval(selectedRow, false);
+								break;
+							}
+							if(users.getUser_type() == 2) {
+								formImpl.DH_Aproval(selectedRow, false);
+								break;
+							}
+							if(users.getUser_type() == 3) {
+								formImpl.BC_Aproval(selectedRow, false);
+								break;
+							}												
+						}
+					}
+			 }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		doGet(request, response);//kReloads Page with user session
 		System.out.println("In doGet");
-		if (request.getParameter("Aprove") != null){
-		       System.out.println("Aprove");
-		 }
-		else if (request.getParameter("Deny") != null){
-		       System.out.println("Deny");
-		 }
 	}
-
 }

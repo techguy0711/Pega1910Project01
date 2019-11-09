@@ -64,19 +64,19 @@ public class LoginServlet extends HttpServlet {
 			if (what.UserAuthenticationValidation(username, password) != null) {
 				if (what.UserAuthenticationValidation(username, password).getUser_id() == 0) {
 					System.out.println(0);
-					RequestDispatcher rs = request.getRequestDispatcher("employee.html");
+					RequestDispatcher rs = request.getRequestDispatcher("FormManager");
 					rs.forward(request, response);
 				} else if (what.UserAuthenticationValidation(username, password).getUser_id() == 1) {
 					System.out.println(1);
-					RequestDispatcher rs = request.getRequestDispatcher("DepartmentSupervisor.html");
+					RequestDispatcher rs = request.getRequestDispatcher("FormManager");
 					rs.forward(request, response);
 				} else if (what.UserAuthenticationValidation(username, password).getUser_id() == 2) {
 					System.out.println(2);
-					RequestDispatcher rs = request.getRequestDispatcher("DepartmentHead.html");
+					RequestDispatcher rs = request.getRequestDispatcher("FormManager");
 					rs.forward(request, response);
 				} else if (what.UserAuthenticationValidation(username, password).getUser_id() == 3) {
 					System.out.println(3);
-					RequestDispatcher rs = request.getRequestDispatcher("BenefitsCoordinator.html");
+					RequestDispatcher rs = request.getRequestDispatcher("FormManager");
 					rs.forward(request, response);
 				}
 			} else {

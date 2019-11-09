@@ -119,4 +119,63 @@ public class TuitionReimbursementFormDAOImplementation {
 //		ps.setBoolean(23, false);
 //		ps.executeUpdate();
 //	}
+	//Aproval functions
+	public void DS_Aproval(String aproveUser, boolean Approval) {
+		ConnFactory cf = ConnFactory.getInstance();
+		Connection conn= cf.getConnection();
+		String sql = "UPDATE form_table SET ds_approval = ? WHERE form_id = ?";
+		try {
+			System.out.println(Integer.parseInt(aproveUser)+" -> Connected");
+			PreparedStatement ps= conn.prepareStatement(sql);
+			ps.setBoolean(1, Approval);
+			ps.setInt(2, Integer.parseInt(aproveUser));
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void DH_Aproval(String aproveUser, boolean Approval) {
+		ConnFactory cf = ConnFactory.getInstance();
+		Connection conn= cf.getConnection();
+		String sql = "UPDATE form_table SET dh_approval = ? WHERE form_id = ?";
+		try {
+			PreparedStatement ps= conn.prepareStatement(sql);
+			ps.setBoolean(1, Approval);
+			ps.setInt(2, Integer.parseInt(aproveUser));
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void BC_Aproval(String aproveUser, boolean Approval) {
+		ConnFactory cf = ConnFactory.getInstance();
+		Connection conn= cf.getConnection();
+		String sql = "UPDATE form_table SET bc_approval = ? WHERE form_id = ?";
+		try {
+			PreparedStatement ps= conn.prepareStatement(sql);
+			ps.setBoolean(1, Approval);
+			ps.setInt(2, Integer.parseInt(aproveUser));
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	//TODO Final approval method
+	public void Final_Aproval(String aproveUser, boolean Approval) {
+		ConnFactory cf = ConnFactory.getInstance();
+		Connection conn= cf.getConnection();
+		String sql = "UPDATE form_table SET final_approval = ? WHERE employee_username = ?";
+		try {
+			PreparedStatement ps= conn.prepareStatement(sql);
+			ps.setBoolean(1, Approval);
+			ps.setString(2, aproveUser);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
