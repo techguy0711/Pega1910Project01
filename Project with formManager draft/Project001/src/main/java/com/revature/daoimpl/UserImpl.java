@@ -1,6 +1,7 @@
 package com.revature.daoimpl;
 import java.sql.Connection;
-	import java.sql.ResultSet;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 	import java.sql.SQLException;
 	import java.sql.Statement;
 	import java.util.ArrayList;
@@ -45,7 +46,26 @@ public class UserImpl {
 			}
 			return r;
 		}
+		public void updateBalance(Double balance, String username) {
+			ConnFactory cf = ConnFactory.getInstance();
+			Connection conn= cf.getConnection();
+			String sql = "UPDATE user_table SET available_reimbursment = ? WHERE user_username = ?";
+			double bal = 0.0;
+			try {
+				List<Users> u = getAllUsers();
+				for (Users users : u) {
+					bal = users.getAvailable_reimbursment()+balance;
+				}
+				PreparedStatement ps= conn.prepareStatement(sql);
+				ps.setDouble(1, balance);
+				ps.setString(2, username);
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
+		}
 
 
 

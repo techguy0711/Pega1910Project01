@@ -76,7 +76,7 @@ public class LoginServlet extends HttpServlet {
 					rs.forward(request, response);
 				} else if (what.UserAuthenticationValidation(username, password).getUser_id() == 3) {
 					System.out.println(3);
-					RequestDispatcher rs = request.getRequestDispatcher("FormManager");
+					RequestDispatcher rs = request.getRequestDispatcher("BC_FormManager");
 					rs.forward(request, response);
 				}
 			} else {
