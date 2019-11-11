@@ -1,0 +1,51 @@
+.tuitionReinbusmentform{
+    width: 25%;
+    font-size: 16pt;
+}
+.tuitionReinbusmentformSubmitBTN{
+    width: 60%;
+    font-size: 24pt;
+}
+body{
+    background: url("books.jpg") no-repeat center center fixed;    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+.ReinbusmentFormBody{
+    background: rgb(179, 176, 176);
+    padding: 20 20px;
+    width: 95%;
+
+}
+div {
+    display: table;
+    text-align: center;
+    background-color: white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+input {
+    width: 195px;
+    height: 50px;
+    border: 1px solid #ccc;
+    font-size: 36pt;
+}
+.fontLabels{
+    font-size: 36pt;
+}
+form{
+    font-size: 36pt;
+}
+textarea{
+    font-size: 42pt;
+
+}
+.FileChooser{
+    font-size: 26pt;
+}
+.headertitle{
+    font-size: 26pt;
+}
